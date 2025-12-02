@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>◆ DECONSTRUCTED GAMING INTERFACE ◆</title>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        @keyframes glitch-skew {
+            0%, 100% { transform: skew(0deg); }
+            15% { transform: skew(-1deg); }
+            30% { transform: skew(2deg); }
+            45% { transform: skew(-3deg); }
+            60% { transform: skew(1deg); }
+        }
+        @keyframes glitch-text {
+            0% { text-shadow: 2px 0 0 #ff0000; }
+            50% { text-shadow: -2px 0 0 #00ffff, 4px 0 0 #ff00ff; }
+            100% { text-shadow: 0 0 0 #ff0000; }
+        }
+        body {
+            font-family: 'Space Mono', monospace;
+            background-color: #000000;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            position: relative;
+        }
+        .header {
+            width: 80px;
+            background-color: #ff0000;
+            color: #000000;
+            padding: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            position: fixed;
+            height: 100%;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            border-right: 5px solid #ffffff;
+            z-index: 20;
+        }
+        .header h1 {
+            font-family: 'Major Mono Display', monospace;
+            margin: 0;
+            font-size: 1.5em;
+            letter-spacing: 5px;
+            transform: rotate(180deg);
+            white-space: nowrap;
+        }
+        .main-content {
+            margin-left: 85px;
+            flex-grow: 1;
+            padding: 40px;
+            text-align: left;
+            position: relative;
+            z-index: 10;
+            padding-top: 140px;
+        }
+        .registration-bar {
+            position: fixed;
+            top: 0;
+            left: 85px;
+            right: 0;
+            background: rgba(0,0,0,0.95);
+            border-bottom: 2px solid #ff0000;
+            padding: 15px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 30;
+        }
+        .registration-bar h4 {
+            margin: 0;
+            font-family: 'Major Mono Display', monospace;
+            font-size: 1em;
+            color: #ff0000;
+            letter-spacing: 2px;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid #ff0000;
+            width: 0;
+            animation: typing 4s steps(60,end) forwards, glitch-text 3s infinite;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        .main-content h2 {
+            font-family: 'Major Mono Display', monospace;
+            font-size: 4em;
+            color: #ffffff;
+            border-bottom: 2px solid #ff0000;
+            padding-bottom: 10px;
+            margin-bottom: 40px;
+            animation: glitch-skew 6s infinite alternate;
+            position: relative;
+        }
+        .main-content h2::before, .main-content h2::after {
+            content: 'DECONSTRUCTED INTERFACE';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            clip: rect(0, 900px, 0, 0);
+            animation: glitch-text 5s infinite;
+        }
+        .main-content h2::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff0000;
+            background: #000000;
+            animation: glitch-text 4s infinite reverse;
+        }
+        .main-content h2::after {
+            left: -2px;
+            text-shadow: -2px 0 #00ffff;
+            background: #000000;
+            animation: glitch-text 3s infinite;
+        }
+
+        .game-link-box {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            margin: 50px 0;
+            border-left: 5px solid #ff0000;
+            max-width: 700px;
+        }
+        .game-link-box h3 { color: #ff0000; font-size: 1.5em; margin-top: 0; }
+        .game-link-box p { color: #aaaaaa; margin-bottom: 25px; }
+        .game-link-box a {
+            display: inline-block;
+            background-color: #ff0000;
+            color: #000000;
+            padding: 10px 25px;
+            text-decoration: none;
+            border: 2px solid #ff0000;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+        .game-link-box a:hover {
+            background-color: #000000;
+            color: #ff0000;
+            box-shadow: 0 0 15px #ff0000;
+        }
+
+        /* INSTRUCTION MANUAL BOX */
+        .manual-box {
+            background-color: rgba(255, 255, 255, 0.02);
+            padding: 25px 30px;
+            margin-top: 30px;
+            border-left: 5px solid #00ffff;
+            max-width: 800px;
+        }
+        .manual-box h3 {
+            margin-top: 0;
+            font-family: 'Major Mono Display', monospace;
+            font-size: 1.4em;
+            color: #00ffff;
+            letter-spacing: 2px;
+        }
+        .manual-box h4 {
+            margin-bottom: 5px;
+            margin-top: 20px;
+            color: #ff00ff;
+            font-size: 1em;
+            text-transform: uppercase;
+        }
+        .manual-box p, .manual-box li {
+            color: #cccccc;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+        .manual-box ul {
+            padding-left: 18px;
+            margin-top: 8px;
+        }
+        .manual-label {
+            font-size: 0.8em;
+            color: #888888;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            right: 10px;
+            font-size: 0.7em;
+            color: #ff0000;
+            letter-spacing: 2px;
+            z-index: 5;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>PORTAL ACCESS GRANTED_</h1>
+    </div>
+
+    <div class="registration-bar">
+        <h4 class="scan-text">NAME : AMAN SHAKYA   |   REGISTRATION NO. : 23BCG10119</h4>
+    </div>
+
+    <div class="main-content">
+        <h2>DECONSTRUCTED INTERFACE</h2>
+        <p>System status: Online. Ready to transmit data packets. Initiating game launcher sequence.</p>
+        
+        <div class="game-link-box">
+            <h3>TARGET: CLOUD_RUNNER // PROTOCOL 7</h3>
+            <p>Direct pipeline established. Execution environment verified. Click below to bypass security parameters and access the featured game.</p>
+            <a href="#" target="_blank">EXECUTE GAME_FILE // RUN</a>
+            <p style="margin-top: 15px; font-size: 0.8em; color: #888888;">// WARNING: HIGH-VELOCITY DATA TRANSFER REQUIRED</p>
+        </div>
+
+        <!-- NEON STRIKE V2 INSTRUCTION MANUAL -->
+        <div class="manual-box">
+            <div class="manual-label">/ / NEON STRIKE V2 : OPERATION MANUAL / /</div>
+            <h3>NEON STRIKE V2 // PILOT BRIEFING</h3>
+
+            <h4>Mission Objective</h4>
+            <p>
+                You are the pilot of a neon strike craft positioned at the bottom of the screen. 
+                Your task: <strong>eliminate falling enemy units</strong> and <strong>survive as long as possible</strong>.
+                Destroy enemies to increase your score and avoid letting them collide with your ship or escape past you.
+            </p>
+
+            <h4>Controls</h4>
+            <ul>
+                <li><strong>← Arrow Left</strong> – Move ship left</li>
+                <li><strong>→ Arrow Right</strong> – Move ship right</li>
+                <li><strong>Spacebar</strong> – Fire neon projectile upwards</li>
+            </ul>
+
+            <h4>Core Mechanics</h4>
+            <ul>
+                <li>Your ship is represented by a <strong>triangular neon craft</strong> near the bottom of the playfield.</li>
+                <li>Enemies spawn from the top and drift downward, sometimes with slight horizontal movement.</li>
+                <li>Each enemy destroyed triggers a <strong>neon explosion</strong> and rewards you with <strong>+10 score</strong>.</li>
+                <li>If an enemy <strong>collides with your ship</strong> or <strong>passes the bottom edge</strong>, you lose 1 life.</li>
+            </ul>
+
+            <h4>Health & Lives</h4>
+            <ul>
+                <li>You start with <strong>3 lives</strong> (displayed as a health bar in the top-right HUD).</li>
+                <li>Every hit or missed enemy reduces your health.</li>
+                <li>When lives reach zero: <strong>GAME OVER</strong> is triggered and your final score is displayed.</li>
+            </ul>
+
+            <h4>Damage & Invincibility</h4>
+            <ul>
+                <li>When you take damage, your ship enters a short <strong>invincibility window</strong> and flashes to indicate a hit.</li>
+                <li>During this period, further collisions will not remove additional lives.</li>
+            </ul>
+
+            <h4>How to Start / Restart</h4>
+            <ul>
+                <li>When the game loads, an overlay shows <strong>PRESS START</strong> and a <strong>START</strong> button.</li>
+                <li>Click the <strong>START</strong> button to begin the game loop.</li>
+                <li>After game over, the overlay shows your <strong>FINAL SCORE</strong> and a <strong>RESTART</strong> button to play again.</li>
+            </ul>
+
+            <h4>Recommended Environment</h4>
+            <ul>
+                <li>Play on a desktop/laptop with a keyboard for best experience.</li>
+                <li>Ensure the browser tab is focused so keyboard controls (arrows + space) are captured correctly.</li>
+            </ul>
+
+            <p class="manual-label" style="margin-top: 20px;">
+                // NOTE: ACCESS THE GAME VIA THE [EXECUTE GAME_FILE // RUN] LINK ABOVE
+            </p>
+        </div>
+
+        <p style="margin-top: 50px;">$USER_MESSAGE: New game manifests scheduled for upload. Check back for patch notes and system logs.</p>
+    </div>
+
+    <div class="footer">[SYSTEM LOG] HOST: GITHUB_PAGES / STATUS: STABLE / DATE: 2025.12.02</div>
+
+</body>
+</html>
